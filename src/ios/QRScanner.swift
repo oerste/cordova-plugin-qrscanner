@@ -197,8 +197,7 @@ class QRScanner : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
     }
 
     @objc func makeOpaque(){
-        self.webView?.isOpaque = false
-        self.webView?.backgroundColor = UIColor.clear
+        self.webView?.isOpaque = true
     }
 
     @objc func boolToNumberString(bool: Bool) -> String{
@@ -422,10 +421,7 @@ class QRScanner : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
             previewing = captureVideoPreviewLayer!.connection!.isEnabled
         }
 
-        var showing = false
-        if(self.webView!.backgroundColor == UIColor.clear){
-            showing = true
-        }
+        let showing = !self.webView!.isOpaque
 
         var lightEnabled = false
         if(backCamera?.torchMode == AVCaptureDevice.TorchMode.on){
